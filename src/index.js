@@ -1,27 +1,29 @@
+import { createStore } from "redux";
+
+
+
 const add = document.getElementById("add");
 const minus = document.getElementById("minus");
 const number = document.querySelector("span")
 
-let count = 0;
-
-number.innerText=count
-
-// 숫자가 바뀌면 html에게 바뀌었다고 알려줘어야 함
-const updateText = () =>{
-  number.innerText = count;
+const countModifier = (count=0,action) =>{
+  if (action.type === "add"){
+    return count +1;
+  }else if(action.type === "minus"){
+    return count -1;
+  }else{
+    return count
+  }
 }
 
-const handleAdd = ()=>{
-  count++
-  updateText()
-}
+const countStore = createStore(countModifier)
 
-const handleMinus = () =>{
-  count--
-  updateText()
-}
+countStore.dispatch({type:"add"})
+countStore.dispatch({type:"add"})
+countStore.dispatch({type:"add"})
+countStore.dispatch({type:"add"})
+countStore.dispatch({type:"add"})
+countStore.dispatch({type:"add"})
+countStore.dispatch({type:"minus"})
 
-
-add.addEventListener("click",handleAdd)
-minus.addEventListener("click",handleMinus)
-
+console.log(countStore.getState())
