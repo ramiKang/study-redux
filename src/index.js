@@ -19,6 +19,8 @@ const deleteToDo = (id) => {
 }
 
 const reducer = (state=[],action)=>{
+  // state mutate x
+ 
   console.log(action)
   switch (action.type){
     case ADD_TODO:
